@@ -104,6 +104,286 @@ cd ../novo-servico
 
 ---
 
+## 🏗️ **Visão Geral da Arquitetura**
+
+```
+github.com/personal-finance-control-app/
+├── 🧑‍💻 user-service           # Gerenciamento de usuários
+├── 🔐 auth-service           # Autenticação e autorização
+├── 💰 transaction-service    # Processamento de transações
+├── 📊 report-service         # Relatórios e analytics
+├── 🚪 api-gateway           # Gateway e roteamento
+├── 🎨 frontend              # Interface Angular
+├️── ⚙️ infrastructure        # IaC e configurações
+├── 📋 service-template      # Template para novos serviços
+└── 📝 shared-contracts      # Contratos e DTOs compartilhados
+```
+
+---
+
+## 📋 **Detalhamento de Cada Repositório**
+
+### 1. **🧑‍💻 user-service**
+**Responsabilidade**: Gerenciamento de usuários e perfis
+```python
+# Conteúdo principal:
+- Entidades: User, UserProfile, UserPreferences
+- Endpoints: 
+  POST /users          # Criar usuário
+  GET /users/{id}      # Buscar usuário
+  PUT /users/{id}      # Atualizar usuário
+  DELETE /users/{id}   # Deletar usuário
+- Funcionalidades:
+  ✅ Cadastro de usuários
+  ✅ Gerenciamento de perfis
+  ✅ Preferências do usuário
+  ✅ Histórico de atividades
+```
+
+### 2. **🔐 auth-service**
+**Responsabilidade**: Autenticação, autorização e segurança
+```python
+# Conteúdo principal:
+- Entidades: AuthSession, Permission, Role
+- Endpoints:
+  POST /auth/login     # Login JWT
+  POST /auth/register  # Registro
+  POST /auth/refresh   # Refresh token
+  GET /auth/me         # Info do usuário logado
+- Funcionalidades:
+  ✅ Autenticação JWT
+  ✅ Autorização RBAC
+  ✅ Refresh tokens
+  ✅ OAuth2 integration
+```
+
+### 3. **💰 transaction-service**
+**Responsabilidade**: Processamento e gestão de transações financeiras
+```python
+# Conteúdo principal:
+- Entidades: Transaction, Category, BankAccount
+- Endpoints:
+  POST /transactions       # Criar transação
+  GET /transactions        # Listar transações
+  GET /transactions/{id}   # Buscar transação
+  PUT /transactions/{id}   # Atualizar transação
+- Funcionalidades:
+  ✅ Importação de extrato bancário
+  ✅ Categorização automática
+  ✅ Filtros e buscas
+  ✅ Validação de transações
+```
+
+### 4. **📊 report-service**
+**Responsabilidade**: Analytics, relatórios e dashboards
+```python
+# Conteúdo principal:
+- Entidades: Report, Dashboard, FinancialMetric
+- Endpoints:
+  GET /reports/monthly    # Relatório mensal
+  GET /reports/annual     # Relatório anual
+  GET /reports/categories # Por categorias
+  POST /reports/generate  # Gerar relatório custom
+- Funcionalidades:
+  ✅ Relatórios PDF/Excel
+  ✅ Gráficos e visualizações
+  ✅ Métricas financeiras
+  ✅ Exportação de dados
+```
+
+### 5. **🚪 api-gateway**
+**Responsabilidade**: Roteamento, rate limiting e segurança centralizada
+```python
+# Conteúdo principal:
+- Configurações de roteamento:
+  /api/users/**       → user-service
+  /api/auth/**        → auth-service
+  /api/transactions/** → transaction-service
+  /api/reports/**     → report-service
+- Funcionalidades:
+  ✅ Rate limiting
+  ✅ Load balancing
+  ✅ Circuit breaker
+  ✅ Logging centralizado
+  ✅ Transformação de requests
+```
+
+### 6. **🎨 frontend**
+**Responsabilidade**: Interface do usuário Angular
+```typescript
+// Estrutura:
+src/
+├── app/
+│   ├── modules/
+│   │   ├── auth/          # Autenticação
+│   │   ├── dashboard/     # Dashboard principal
+│   │   ├── transactions/  # Gestão de transações
+│   │   └── reports/       # Relatórios
+│   ├── services/
+│   │   ├── api.service.ts
+│   │   ├── auth.service.ts
+│   │   └── transaction.service.ts
+│   └── shared/
+│       ├── components/    # Componentes compartilhados
+│       ├── models/        # Interfaces TypeScript
+│       └── utils/         # Utilitários
+```
+
+### 7. **⚙️ infrastructure**
+**Responsabilidade**: Infraestrutura como código
+```yaml
+# Conteúdo principal:
+kubernetes/
+├── deployments/           # Deployments K8s
+├── services/             # Services K8s
+├── ingress/              # Ingress rules
+└── configmaps/           # Configurações
+
+terraform/
+├── aws/                  # Recursos AWS
+├── mongodb-atlas/        # Config MongoDB
+└── variables.tf          # Variáveis
+
+scripts/
+├── deploy.sh            # Scripts de deploy
+├── backup.sh           # Scripts de backup
+└── monitoring.sh       # Scripts de monitoramento
+```
+
+### 8. **📋 service-template**
+**Responsabilidade**: Template padronizado para novos serviços
+```python
+# Conteúdo principal:
+- Estrutura de pastas padrão
+- Configurações CI/CD
+- Dockerfile otimizado
+- Configurações de logging
+- Health checks
+- Metrics Prometheus
+- Test configuration
+```
+
+### 9. **📝 shared-contracts**
+**Responsabilidade**: Contratos compartilhados entre serviços
+```python
+# Conteúdo principal:
+- DTOs compartilhados:
+  UserDTO, TransactionDTO, ReportDTO
+- Interfaces de API:
+  OpenAPI/Swagger specs
+- Event schemas:
+  UserCreatedEvent, TransactionProcessedEvent
+- Tipos TypeScript:
+  Interfaces para frontend
+```
+
+---
+
+## 🔗 **Como os Serviços se Comunicam**
+
+### **Comunicação Síncrona (HTTP)**
+```
+Frontend → API Gateway → Microserviços
+```
+
+### **Comunicação Assíncrona (Eventos)**
+```
+user-service → (UserCreated event) → transaction-service
+transaction-service → (TransactionCreated event) → report-service
+```
+
+### **Dependências Compartilhadas**
+```
+Todos os microserviços → shared-contracts (DTOs)
+Todos os microserviços → service-template (boilerplate)
+```
+
+---
+
+## 🗄️ **Bancos de Dados por Serviço**
+
+| **Serviço** | **Banco** | **Dados** |
+|------------|----------|-----------|
+| **user-service** | MongoDB | Users, profiles, preferences |
+| **auth-service** | MongoDB | Sessions, tokens, permissions |
+| **transaction-service** | MongoDB | Transactions, categories, accounts |
+| **report-service** | MongoDB + Redis | Reports, cache de analytics |
+| **api-gateway** | Redis | Rate limiting, cache |
+
+---
+
+## 🚀 **Fluxo de uma Operação Completa**
+
+### **1. Usuário faz login**
+```
+frontend → api-gateway → auth-service → (JWT token)
+```
+
+### **2. Importa transações**
+```
+frontend → api-gateway → transaction-service → (processa arquivo)
+```
+
+### **3. Gera relatório**
+```
+frontend → api-gateway → report-service → (consulta transaction-service)
+```
+
+---
+
+## 📊 **Monitoramento e Observabilidade**
+
+### **Cada serviço inclui:**
+- ✅ **Health checks** (`/health`, `/ready`)
+- ✅ **Métricas Prometheus** (`/metrics`)
+- ✅ **Logging estruturado**
+- ✅ **Tracing distribuído** (OpenTelemetry)
+
+### **Monitoramento centralizado:**
+- 📈 **Grafana** - Dashboards
+- 🔍 **Prometheus** - Métricas
+- 📋 **Loki** - Logs
+- 🕵️ **Jaeger** - Tracing
+
+---
+
+## 🔧 **Ferramentas e Tecnologias**
+
+### **Backend (Todos os microserviços):**
+- 🐍 **Python 3.11+**
+- ⚡ **FastAPI** (ASGI)
+- 🐳 **Docker** + **Docker Compose**
+- 🎯 **Pydantic** (validação)
+- 📊 **MongoDB** (banco principal)
+- 🔄 **Redis** (cache e sessões)
+
+### **Frontend:**
+- ⚡ **Angular 17+**
+- 🎨 **PrimeNG** (UI components)
+- 📱 **RxJS** (reactive programming)
+- 🛡️ **JWT** (autenticação)
+
+### **Infraestrutura:**
+- 🚀 **Kubernetes** (orquestração)
+- 🏗️ **Terraform** (IaC)
+- 📦 **GitHub Actions** (CI/CD)
+- ☁️ **AWS** ou **GCP** (cloud)
+
+---
+
+## 📋 **Próximos Passos de Implementação**
+
+1. **Configurar service-template** ✅
+2. **Implementar shared-contracts** (DTOs básicos)
+3. **Criar user-service** (primeiro microserviço)
+4. **Configurar api-gateway** (roteamento básico)
+5. **Implementar auth-service** (autenticação)
+6. **Desenvolver transaction-service** (core business)
+7. **Criar frontend** (interface básica)
+8. **Configurar infrastructure** (K8s, Terraform)
+
+---
+
 **📞 Suporte**: [team@finance-control.com](mailto:dantonissler18@gmail.com) | **🐛 Issues**: [GitHub Issues](https://github.com/orgs/personal-finance-control-app/projects/1) | **📋 Roadmap**: [Project Board](https://github.com/orgs/personal-finance-control-app/projects/2)
 
 *Última atualização: $(date +"%Y-%m-%d %H:%M:%S")*
