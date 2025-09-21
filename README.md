@@ -1,34 +1,35 @@
-# 🚀 Personal Finance Control - Dashboard Principal
+# 🚀 Finance Control - Dashboard Principal
 
 ![Finance Control](https://img.shields.io/badge/Project-Finance%20Control-blue)
 ![Microservices](https://img.shields.io/badge/Architecture-Microservices-green)
 ![Status](https://img.shields.io/badge/Status-Development-yellow)
+![Version](https://img.shields.io/badge/Version-1.0.0--alpha-lightgrey)
 
 ## 📊 Status Dashboard em Tempo Real
 
 ### 🏗️ Microserviços Backend
 
-| Serviço | Versão | Coverage | Status | Deploy | Monitor |
-|---------|--------|----------|--------|--------|---------|
-| User Service | ![Version](https://img.shields.io/badge/Version-1.2.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-88%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
-| Auth Service | ![Version](https://img.shields.io/badge/Version-1.1.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
-| Transaction Service | ![Version](https://img.shields.io/badge/Version-1.3.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-85%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
-| Report Service | ![Version](https://img.shields.io/badge/Version-0.9.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-78%25-yellow) | ![Status](https://img.shields.io/badge/Status-🔧_WIP-orange) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
+| Serviço | Repositório | Versão | Coverage | Status | Monitor |
+|---------|-------------|--------|----------|--------|---------|
+| **User Service** | [fc-user-service](https://github.com/finance-control-app/fc-user-service) | ![Version](https://img.shields.io/badge/Version-1.2.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-88%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
+| **Auth Service** | [fc-auth-service](https://github.com/finance-control-app/fc-auth-service) | ![Version](https://img.shields.io/badge/Version-1.1.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
+| **Transaction Service** | [fc-transaction-service](https://github.com/finance-control-app/fc-transaction-service) | ![Version](https://img.shields.io/badge/Version-1.3.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-85%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
+| **Report Service** | [fc-report-service](https://github.com/finance-control-app/fc-report-service) | ![Version](https://img.shields.io/badge/Version-0.9.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-78%25-yellow) | ![Status](https://img.shields.io/badge/Status-🔧_WIP-orange) | ![Metrics](https://img.shields.io/badge/Metrics-Prometheus-E6522C) |
 
 ### 🌐 Frontend & Gateway
 
-| Componente | Versão | Coverage | Status | Deploy | Preview |
-|------------|--------|----------|--------|--------|---------|
-| API Gateway | ![Version](https://img.shields.io/badge/Version-1.0.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-82%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) | ![Docs](https://img.shields.io/badge/Docs-Swagger-85EA2D) |
-| Frontend Angular | ![Version](https://img.shields.io/badge/Version-2.0.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000) | ![Preview](https://img.shields.io/badge/Preview-Live-green) |
+| Componente | Repositório | Versão | Coverage | Status | Deploy |
+|------------|-------------|--------|----------|--------|--------|
+| **API Gateway** | [fc-api-gateway](https://github.com/finance-control-app/fc-api-gateway) | ![Version](https://img.shields.io/badge/Version-1.0.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-82%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![K8s](https://img.shields.io/badge/Deploy-Kubernetes-326CE5) |
+| **Frontend Angular** | [fc-frontend](https://github.com/finance-control-app/fc-frontend) | ![Version](https://img.shields.io/badge/Version-2.0.0-blue) | ![Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen) | ![Status](https://img.shields.io/badge/Status-🟡_Development-yellow) | ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000) |
 
-### ⚙️ Infraestrutura
+### ⚙️ Infraestrutura & Bibliotecas
 
-| Componente | Versão | Status | Ambiente | Monitor |
-|------------|--------|--------|----------|---------|
-| Kubernetes | ![Version](https://img.shields.io/badge/Version-1.27-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Env](https://img.shields.io/badge/Env-Production-brightgreen) | ![Health](https://img.shields.io/badge/Health-100%25-brightgreen) |
-| MongoDB Atlas | ![Version](https://img.shields.io/badge/Version-7.0-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Env](https://img.shields.io/badge/Env-Production-brightgreen) | ![Uptime](https://img.shields.io/badge/Uptime-99.95%25-brightgreen) |
-| GitHub Actions | ![Version](https://img.shields.io/badge/Version-Latest-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![CI/CD](https://img.shields.io/badge/CI/CD-Running-green) | ![Builds](https://img.shields.io/badge/Builds-Passing-brightgreen) |
+| Componente | Repositório | Versão | Status | Tipo |
+|------------|-------------|--------|--------|------|
+| **Infrastructure** | [fc-infrastructure](https://github.com/finance-control-app/fc-infrastructure) | ![Version](https://img.shields.io/badge/Version-1.0.0-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Type](https://img.shields.io/badge/Type-Infrastructure-grey) |
+| **Shared Contracts** | [fc-shared-contracts](https://github.com/finance-control-app/fc-shared-contracts) | ![Version](https://img.shields.io/badge/Version-1.0.0-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Type](https://img.shields.io/badge/Type-Library-lightblue) |
+| **Service Template** | [fc-service-template](https://github.com/finance-control-app/fc-service-template) | ![Version](https://img.shields.io/badge/Version-1.0.0-blue) | ![Status](https://img.shields.io/badge/Status-✅_Active-green) | ![Type](https://img.shields.io/badge/Type-Template-yellow) |
 
 ## 📈 Métricas do Sistema
 
@@ -37,32 +38,9 @@
 ![Requests Day](https://img.shields.io/badge/Daily_Requests-150K-blue)
 ![Error Rate](https://img.shields.io/badge/Error_Rate-0.02%25-green)
 
-## 🔗 Links Rápidos
+## 🚀 Como Utilizar o Service Template
 
-### 📚 Repositórios
-- [User Service](https://github.com/finance-control-app/fc-user-service)
-- [Auth Service](https://github.com/finance-control-app/fc-auth-service)
-- [Transaction Service](https://github.com/finance-control-app/fc-transaction-service)
-- [Frontend](https://github.com/finance-control-app/fc-frontend)
-- [API Gateway](https://github.com/finance-control-app/fc-api-gateway)
+### 📋 O que é o Service Template?
+O **fc-service-template** é um repositório template que contém toda a configuração base para criar novos microserviços de forma padronizada.
 
-### 🌐 Environments
-- **Production**: [https://app.finance-control.com](https://app.finance-control.com)
-- **Staging**: [https://staging.finance-control.com](https://staging.finance-control.com)
-- **API Docs**: [https://api.finance-control.com/docs](https://api.finance-control.com/docs)
-
-## 🚀 Como Contribuir
-
-1. Escolha um repositório da lista acima
-2. Siga as guidelines específicas do repositório
-3. Verifique o status atual no dashboard
-4. Submeta um PR!
-
-## 📊 Status de Deploy
-
-![Last Deployment](https://img.shields.io/badge/Last_Deploy-$(date +%Y--%m--%d)-lightgrey)
-![Deploy Status](https://img.shields.io/badge/Deploy_Status-Success-brightgreen)
-
----
-
-**📞 Suporte**: [team@finance-control.com](mailto:team@finance-control.com) | **🐛 Issues**: [GitHub Issues](https://github.com/orgs/finance-control-app/projects/1)
+### 🏗️ Estrutura do Template:
